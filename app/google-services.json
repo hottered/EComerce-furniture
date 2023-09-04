@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "198549882078",
+    "project_id": "ecomerce-furniture-a5d24",
+    "storage_bucket": "ecomerce-furniture-a5d24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198549882078:android:33b326187e8c228e36ee4f",
+        "android_client_info": {
+          "package_name": "com.example.ecomerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198549882078-9q7mmgh8b75gk8tkke1ms7fe7fbadd3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMr2X1SpQFKILgBMLSHWLWsOnZ8N5U1V0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198549882078-9q7mmgh8b75gk8tkke1ms7fe7fbadd3a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

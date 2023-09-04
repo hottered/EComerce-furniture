@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EComerce</string>
+    <string name="textview">The right address\nFor Shopping\nAnyday</string>
+    <string name="downTextMain">It is now very easy\nto find articles you want for ur home</string>
+</resources>

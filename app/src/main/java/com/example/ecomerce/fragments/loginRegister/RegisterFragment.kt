@@ -11,10 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import com.example.ecomerce.R
 import com.example.ecomerce.data.User
 import com.example.ecomerce.databinding.FragmentRegisterBinding
+import com.example.ecomerce.utill.RegisterValidation
 import com.example.ecomerce.utill.Resource
 import com.example.ecomerce.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -63,6 +66,26 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                     }
                     else -> Unit
                     
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted { 
+            viewModel.validation.collect{validation ->
+                if(validation.email is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edEmailRegister.apply { 
+                            requestFocus()
+                            error = validation.email.message
+                        }
+                    }
+                }
+                if(validation.password is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.edPasswordRegister.apply { 
+                            requestFocus()
+                            error = validation.password.message
+                        }
+                    }
                 }
             }
         }

@@ -41,7 +41,7 @@
             android:drawableStart="@drawable/ic_kleine_shape"
             android:drawablePadding="6dp"
 
-            android:text="Klaine"
+            android:text="Aleksa-CEO"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"

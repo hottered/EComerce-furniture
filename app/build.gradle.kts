@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt") version "1.9.10"
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,6 +42,9 @@ android {
         correctErrorTypes = true
         useBuildCache = false
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -54,8 +58,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     //Firebase
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
 //    implementation ("com.google.firebase:firebase-auth:21.0.6")
 
 

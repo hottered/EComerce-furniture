@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.586" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvDoYouHaveAnAcc"
         style="@style/h2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/btnStart"
         style="@style/blueButtonStyle"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -99,5 +99,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/elipse"
         app:layout_constraintStart_toStartOf="@+id/elipse"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDoYouHaveAnAcc" />
 </androidx.constraintlayout.widget.ConstraintLayout>

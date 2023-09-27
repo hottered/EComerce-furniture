@@ -28,8 +28,7 @@ class RegisterViewModel @Inject constructor(
     private val _register = MutableStateFlow<Resource<User>>(Resource.Unspecified())
     val register: Flow<Resource<User>> = _register
 
-    private val _validation =
-        Channel<RegisterFieldsState>() //Channel doesnt take values in arguments
+    private val _validation = Channel<RegisterFieldsState>() //Channel doesnt take values in arguments
     val validation = _validation.receiveAsFlow()
     fun createAccountWithEmailAndPassword(user: User, password: String) {
         if (checkValidation(user, password)) {

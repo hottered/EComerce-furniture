@@ -60,6 +60,7 @@ dependencies {
 
     //Firebase
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
 //    implementation ("com.google.firebase:firebase-auth:21.0.6")
 
 

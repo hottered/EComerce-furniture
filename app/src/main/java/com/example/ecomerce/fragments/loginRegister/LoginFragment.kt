@@ -13,8 +13,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.ecomerce.R
 import com.example.ecomerce.activites.ShoppingActivity
 import com.example.ecomerce.databinding.FragmentLoginBinding
+import com.example.ecomerce.dialog.setupBottomSheetDialog
 import com.example.ecomerce.utill.Resource
 import com.example.ecomerce.viewmodel.LoginViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -44,6 +46,27 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val email = edEmailLogin.text.toString().trim()
                 val password = edPasswordLogin.text.toString()
                 viewModel.login(email, password)
+            }
+        }
+        binding.forgotPasswordLogin.setOnClickListener { 
+            setupBottomSheetDialog { email->
+                viewModel.resetPassword(email)
+            }
+        }
+        lifecycleScope.launchWhenStarted { 
+            viewModel.resetPassword.collect{
+                when (it) {
+                    is Resource.Loading -> {
+                    }
+                    is Resource.Success -> {
+                        Snackbar.make(requireView(),"Reset link was sent to your email",Snackbar.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        Snackbar.make(requireView(),"Error: ${it.message}",Snackbar.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+                
             }
         }
         lifecycleScope.launchWhenStarted {

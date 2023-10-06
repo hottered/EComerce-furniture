@@ -2,6 +2,7 @@ package com.example.ecomerce.di
 
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
+import com.example.ecomerce.firebase.FirebaseCommon
 import com.example.ecomerce.utill.Constance.INTRODUCTION_SP
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,5 +30,12 @@ object AppModule {
     fun provideIntroductionSharedPreferences(
         application: Application
     ) = application.getSharedPreferences(INTRODUCTION_SP,MODE_PRIVATE)
+    
+    @Provides
+    @Singleton
+    fun provideFirebaseCommon(
+        firebaseAuth: FirebaseAuth,
+        firestore: FirebaseFirestore
+    ) = FirebaseCommon(firestore,firebaseAuth)
     
 }

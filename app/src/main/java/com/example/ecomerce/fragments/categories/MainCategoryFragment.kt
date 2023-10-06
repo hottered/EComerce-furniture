@@ -10,6 +10,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecomerce.R
@@ -18,6 +19,7 @@ import com.example.ecomerce.adapters.BestProductAdapter
 import com.example.ecomerce.adapters.SpecialProductsAdapter
 import com.example.ecomerce.databinding.FragmentMainCategoryBinding
 import com.example.ecomerce.utill.Resource
+import com.example.ecomerce.utill.showBottomNavigationView
 import com.example.ecomerce.viewmodel.MainCategoryViewModel
 import com.google.android.material.tabs.TabLayout.TabGravity
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,15 +45,34 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         binding = FragmentMainCategoryBinding.inflate(inflater)
         return binding.root
     }
-
     
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupSpecialProductsRv()
         setupBestDealsRv()
         setupBestProductsRv()
+        
+        specialProductsAdapter.OnClick = {
+            val b = Bundle().apply { 
+                putParcelable("product",it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
+
+        bestProductsAdapter.OnClick = {
+            val b = Bundle().apply {
+                putParcelable("product",it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
+
+        bestDealsAdapter.OnClick = {
+            val b = Bundle().apply {
+                putParcelable("product",it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
 
         lifecycleScope.launchWhenStarted {
             viewModel.specialProducts.collectLatest {
@@ -117,6 +138,11 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
             }
             
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 
     private fun setupBestProductsRv() {

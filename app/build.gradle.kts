@@ -4,6 +4,8 @@ plugins {
     kotlin("kapt") version "1.9.10"
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

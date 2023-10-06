@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecomerce.R
 import com.example.ecomerce.adapters.BestProductAdapter
 import com.example.ecomerce.databinding.FragmentBaseCategoryBinding
+import com.example.ecomerce.utill.showBottomNavigationView
 
 open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
 
@@ -34,6 +36,21 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
 
         setupOfferRv()
         setupBestProductsRv()
+
+        offerAdapter.OnClick = {
+            val b = Bundle().apply {
+                putParcelable("product",it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
+
+        bestProducts.OnClick = {
+            val b = Bundle().apply {
+                putParcelable("product",it)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+        }
+        
         binding.rvOffer.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -51,6 +68,11 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 
     fun showOfferLoading(){
@@ -71,7 +93,6 @@ open class BaseCategoryFragment : Fragment(R.layout.fragment_base_category) {
     open fun onBestProductsRequest(){
         
     }
-   
 
     private fun setupBestProductsRv() {
         binding.rvBestProducts.apply { 

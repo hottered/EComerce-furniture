@@ -34,7 +34,7 @@ class DetailsViewModel @Inject constructor(
             .whereEqualTo("product.id",cartProduct.product.id)
             .get()
             .addOnSuccessListener { 
-                it.documents?.let { 
+                it.documents.let { 
                     if(it.isEmpty()){ //add new product
                         addNewProduct(cartProduct)
                     }else{

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.ecomerce.data.Product
 import com.example.ecomerce.databinding.BestDealsRvItemBinding
 import com.example.ecomerce.databinding.ProductRvItemBinding
+import com.example.ecomerce.helper.getProductPrice
 
 class BestProductAdapter : RecyclerView.Adapter<BestProductAdapter.BestProductViewHolder>(){
 
@@ -21,12 +22,9 @@ class BestProductAdapter : RecyclerView.Adapter<BestProductAdapter.BestProductVi
                 Glide.with(itemView)
                     .load(product.images[0])
                     .into(imgProduct)
-                product.offerPercentage?.let {
-                    val remainingPricePercentage = 1f - it
-                    val priceAfterOffer = remainingPricePercentage * product.price
+                    val priceAfterOffer = product.offerPercentage.getProductPrice(product.price)
                     tvNewPrice.text = "$ ${String.format("%.2f",priceAfterOffer)}"
                     tvPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                }
                 if(product.offerPercentage == null){
                     tvNewPrice.visibility = View.INVISIBLE
                 }

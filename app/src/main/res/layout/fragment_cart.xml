@@ -181,5 +181,7 @@
                 app:layout_constraintStart_toStartOf="@id/imageEmptyBoxTexture"
                 app:layout_constraintTop_toBottomOf="@id/imageEmptyBoxTexture" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
+    
 </androidx.core.widget.NestedScrollView>

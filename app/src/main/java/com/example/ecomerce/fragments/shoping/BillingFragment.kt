@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecomerce.R
 import com.example.ecomerce.adapters.AddressAdapter
 import com.example.ecomerce.adapters.BillingProductsAdapter
+import com.example.ecomerce.data.CartProduct
 import com.example.ecomerce.databinding.FragmentBillingBinding
 import com.example.ecomerce.utill.HorizontalItemDecoration
 import com.example.ecomerce.utill.Resource
@@ -30,6 +33,15 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
         BillingProductsAdapter()
     }
     private val viewModel by viewModels<BillingViewModel>()
+    private val args by navArgs<BillingFragmentArgs>()
+    private var products = emptyList<CartProduct>()
+    private var totalPrice = 0f
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        products = args.products.toList()
+        totalPrice = args.totalPrice
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +57,9 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
         
         setupBillingProductsRv()
         setupAddressRv()
+        binding.imageAddAddress.setOnClickListener { 
+            findNavController().navigate(R.id.action_billingFragment_to_addressFragment)
+        }
         
         lifecycleScope.launchWhenStarted { 
             viewModel.address.collectLatest { 
@@ -64,6 +79,8 @@ class BillingFragment : Fragment(R.layout.fragment_billing) {
                 }
             }
         }
+        billingProductsAdapter.differ.submitList(products)
+        binding.tvTotalPrice.text = "$ ${totalPrice}"
     }
 
     private fun setupAddressRv() {

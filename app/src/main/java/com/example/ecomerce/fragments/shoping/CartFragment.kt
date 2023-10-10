@@ -62,6 +62,10 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         cartAdapter.OnMinusClick = {
             viewMode.changeQuantity(it,FirebaseCommon.QuantityChanging.DECREASE)
         }
+        
+        binding.buttonCheckout.setOnClickListener { 
+            findNavController().navigate(R.id.action_cartFragment_to_billingFragment)
+        }
 
 
         lifecycleScope.launchWhenStarted { 
